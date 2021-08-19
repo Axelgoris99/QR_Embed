@@ -73,7 +73,7 @@ int main() {
 	std::cout << "Entrez le nom de l'image avec le Qr Code en sortie \n";
 	std::getline(std::cin, sortie);
 
-	EmbedQrCode(qrCodeMat, qrCodeMask, entre, sortie);
+	EmbedQrCode(qrCodeMat, qrCodeMask, entre, sortie, qr.getVersion());
 
 	return EXIT_SUCCESS;
 }

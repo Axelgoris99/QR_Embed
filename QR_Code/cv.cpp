@@ -45,10 +45,10 @@ void afficherImage(string const& texte, Mat const& image)
     waitKey(0);
 }
 
-void EmbedQrCode(Mat& qrCodeMat, Mat& qrCodeRef, string const& cheminImageEntre, string const& cheminImageSortie) {
+void EmbedQrCode(Mat& qrCodeMat, Mat& qrCodeRef, string const& cheminImageEntre, string const& cheminImageSortie, int const& version) {
     Mat pic;
     pic = LoadImage(cheminImageEntre);
-    Mat sortie = finalColor(pic, qrCodeMat, qrCodeRef);
+    Mat sortie = finalColor(pic, qrCodeMat, qrCodeRef, version);
     string output("sortie/");
     output += cheminImageSortie + ".jpg";
     imwrite(output, sortie);
@@ -64,7 +64,7 @@ Mat LoadImage(string const& image)
     return pic;
 }
 
-Mat finalColor(Mat const& pic, Mat const& qrCode, Mat const& qrRef)
+Mat finalColor(Mat const& pic, Mat const& qrCode, Mat const& qrRef, int const& version)
 {
     //The value in which to bring the lightness back when it is not in it !
     float lightMin = 1.0f;
@@ -77,7 +77,13 @@ Mat finalColor(Mat const& pic, Mat const& qrCode, Mat const& qrRef)
     int sizeOfPictureWidth = pic.cols;
     int goodSize = sizeOfPictureHeight > sizeOfPictureWidth ? sizeOfPictureWidth : sizeOfPictureHeight;
     int sizeOfAModule = ceil(goodSize / sizeOfQrCode);
-    int sizeOfTheCenter = sizeOfAModule / 3;
+    int sizeOfTheCenter = 0;
+    if (version > 30) {sizeOfTheCenter = sizeOfAModule/1.5; }
+    else if (version > 20 && version <=30 ) { sizeOfTheCenter = sizeOfAModule / 2; } 
+    else if (version > 10 && version <= 20) { sizeOfTheCenter = sizeOfAModule / 2.5; } 
+    else if(version < 10){
+        sizeOfTheCenter = sizeOfAModule / 3;
+    }
     if (sizeOfTheCenter < 3) {
         sizeOfTheCenter = 3;
     }

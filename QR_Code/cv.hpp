@@ -17,7 +17,7 @@ void afficherImage(std::string const& texte, cv::Mat const& image);
 /// <param name="qrCodeMat">The QrCode containing the phrase we want</param>
 /// <param name="cheminImageEntre">The picture fo be fused with</param>
 /// <param name="cheminImageSortie">The picture with the embed QR Code</param>
-void EmbedQrCode(cv::Mat& qrCodeMat, cv::Mat& qrCodeRef, std::string const& cheminImageEntre, std::string const& cheminImageSortie);
+void EmbedQrCode(cv::Mat& qrCodeMat, cv::Mat& qrCodeRef, std::string const& cheminImageEntre, std::string const& cheminImageSortie, int const& version);
 
 
 /// <summary>
@@ -26,4 +26,4 @@ void EmbedQrCode(cv::Mat& qrCodeMat, cv::Mat& qrCodeRef, std::string const& chem
 /// <param name="image">The name of the image we want to use</param>
 cv::Mat LoadImage(std::string const& image);
 
-cv::Mat finalColor(cv::Mat const& pic, cv::Mat const& qrCode, cv::Mat const& qrRef);
+cv::Mat finalColor(cv::Mat const& pic, cv::Mat const& qrCode, cv::Mat const& qrRef, int const& version);
