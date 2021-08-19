@@ -7,4 +7,4 @@ All it takes is :
 - The image that you want (relative path)
 - The name of the output that you want, which is a .jpg.
 
-
+[Here is an example](equi.jpg)
